@@ -1,0 +1,13 @@
+#Kolmogorov-Smirnov test
+mu<-mean(galaxies$Vdispersion)
+sigma<-sd(galaxies$Vdispersion)
+ks.test(x=galaxies$Vdispersion,
+        y="pnorm",
+        mean=mu, sd=sigma)
+
+#exercise: 5
+mu<-mean(galaxies$GlobularClusters)
+sigma<-sd(galaxies$GlobularClusters)
+ks.test(x=galaxies$GlobularClusters,
+        y="pnorm",
+        mean=mu, sd=sigma)

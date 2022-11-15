@@ -1,0 +1,19 @@
+#Quantile-quantile (Q-Q) plots
+sort(galaxies$Vdispersion)
+
+mu <- mean(galaxies$Vdispersion)
+sigma <- sd(galaxies$Vdispersion)
+
+# Standardised order statistics:
+z <- (sort(galaxies$Vdispersion) - mu)/sigma
+n <- length(galaxies$Vdispersion)
+r <- (1:n)
+
+# Quantiles of N(0, 1):
+q <- qnorm(p = r/(n + 1), mean = 0, sd = 1)
+
+# Normal Q-Q plot:
+plot(q, z)
+
+# Line with intercept 0 and slope 1:
+abline(a = 0, b = 1, col = "red")

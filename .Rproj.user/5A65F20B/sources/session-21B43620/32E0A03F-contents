@@ -1,0 +1,45 @@
+load("galaxies.Rdata")
+
+#histograma for velocity dispersssion
+hist(galaxies$Vdispersion, breaks=seq(from=0, to=500, by=40))
+#hist(galaxies$Vdispersion)
+
+#Fn(x) by ecdf()
+fn<-ecdf(galaxies$Vdispersion)
+fn(200)
+plot(fn)
+
+sum(galaxies$Vdispersion<=200)/length(galaxies$Vdispersion)#checking whether it worked or not
+mu<-mean(galaxies$Vdispersion)
+sigma<-sd(galaxies$Vdispersion)
+G<-function(x){
+  return(pnorm(x, mean=mu, sd=sigma))
+}
+G(200)
+#hist(G)
+plot(fn, vertical=TRUE, pch=NA)
+
+x<-1:500
+lines(x, G(x))
+
+
+
+#for GlobularCluster
+fn<-ecdf(galaxies$GlobularClusters)
+fn(1000)
+plot(fn)
+
+mu<-mean(galaxies$GlobularClusters)
+sigma<-sd(galaxies$GlobularClusters)
+G<-function(x){
+  return(pnorm(x,mean=mu,sd=sigma))
+}
+G(1000)
+plot(fn,vertical=TRUE,pch=NA)
+x<-0:20000
+lines(x,G(x))
+
+
+
+
+
